@@ -7,15 +7,23 @@ import java.util.Random;
 import android.app.ListActivity;
 import android.view.View;
 import android.widget.ArrayAdapter;
+import android.widget.EditText;
+import android.widget.TextView;
 
 
 public class MainActivity extends ListActivity {
     private CommentsDataSource datasource;
 
+    TextView textViewRate;
+    EditText editText;
+
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+        editText  = (EditText) findViewById(R.id.editText);
+        textViewRate = (TextView) findViewById(R.id.textViewRate);
 
         datasource = new CommentsDataSource(this);
         datasource.open();
@@ -38,9 +46,10 @@ public class MainActivity extends ListActivity {
         switch (view.getId()) {
             case R.id.add:
                 String[] comments = new String[] { "Cool", "Very nice", "Hate it" };
+                String[] rating = new String[] {"1", "2", "3", "4", "5"};
                 int nextInt = new Random().nextInt(3);
                 // save the new comment to the database
-                comment = datasource.createComment(comments[nextInt]);
+                comment = datasource.createComment(comments[nextInt], rating[nextInt]);
                 adapter.add(comment);
                 break;
             case R.id.delete:

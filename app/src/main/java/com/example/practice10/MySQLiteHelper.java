@@ -19,6 +19,8 @@ public class MySQLiteHelper extends SQLiteOpenHelper {
     private static final String DATABASE_NAME = "commments.db"; //column mane for comment field
     private static final int DATABASE_VERSION = 1;
 
+    public static final String COLUMN_RATING = "rating";
+
     // Database creation sql statement
     /* SQL table create----------------
     * CREATE TABLE comment(
@@ -28,7 +30,7 @@ public class MySQLiteHelper extends SQLiteOpenHelper {
      */
     private static final String DATABASE_CREATE = "create table "
             + TABLE_COMMENTS + "( " + COLUMN_ID
-            + " integer primary key autoincrement, " + COLUMN_COMMENT
+            + " integer primary key autoincrement, " + COLUMN_COMMENT + COLUMN_RATING
             + " text not null);";
 
     public MySQLiteHelper(Context context) {
